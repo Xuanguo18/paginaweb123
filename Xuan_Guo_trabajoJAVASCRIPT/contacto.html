@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - BitWorks</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+    <a href="index.html">
+        <logo><img src="img/logo.png" alt="Logo" class="logo"></logo>
+    </a>
+        <nav>
+          <a href="index.html" class="active">Inicio</a>
+          <a href="galeria.html">Galería</a>
+          <a href="presupuesto.html">Presupuesto</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+    <main>
+        <br><br>
+        <h1>Validación de Email</h1>
+        <form id="emailForm">
+            <label for="email">Ingresa tu correo electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com" required>
+            <button type="button" onclick="validateEmail()">Validar</button>
+            <p id="message" class="message"></p>
+        </form>
+        <script>
+            function validateEmail() {
+                const emailInput = document.getElementById("email").value;
+                const message = document.getElementById("message");
+    
+                // Expresión regular para validar el email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+                if (emailRegex.test(emailInput)) {
+                    message.textContent = "¡El correo electrónico es válido!";
+                    message.className = "message valid";
+                } else {
+                    message.textContent = "El correo electrónico no es válido. Intenta de nuevo.";
+                    message.className = "message invalid";
+                }
+            }
+        </script>
+            <h1>Mapa con OpenStreetMap</h1>
+            <div id="map"></div>
+        
+            <script>
+                // Inicializar el mapa
+                const map = L.map('map').setView([41.654222, -4.717778], 12); // Coordenadas y zoom inicial
+        
+                // Cargar los tiles de OpenStreetMap
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap contributors',
+                }).addTo(map);
+        
+                // Agregar un marcador
+                L.marker([41.654222, -4.717778])
+                    .addTo(map)
+                    .bindPopup('Ubicación principal')
+                    .openPopup();
+            </script>
+        <h1>Nos situamos en:</h1> 
+        <h3>5 Av. Ramón y Cajal, Valladolid, Castilla y León</h3>
+        <h1>O llamanos al:</h1>
+        <h3>
+            Telf: 879 917 872 <br>
+            Móvil: 987 312 876 <br>
+        </h3>
+    </main>
+    <br><br><br>
+    <footer>
+        <p>© Copyright 2024 BitWorks · <a href="">Aviso legal</a>  <br>
+        <logoinsta><a href="https://www.instagram.com"><img src="img\logoinsta.png" alt="logoinsta" class="logoinsta"></a></logoinsta>
+        <logoyoutube><a href="https://www.youtube.com"><img src="img\logoyoutube.png" alt="logoyoutube" class="logoyoutube"></a></logoyoutube>
+    </p>
+    </footer>
+      <script src="js/main.js"></script>
+</body>
+
+</html>
