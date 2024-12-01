@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+    <body>
+        <script lang="javascript">
+
+            function alquilar(){
+                if (this.alquilada == 'no'){
+                    this.alquilada = 'si';
+                    this.último_usuario = document.getElementById('usuario').value;
+                }else{
+                    alert('Ya está alquilada, hay que devolverla antes.');
+                }
+            }
+            function devolver(){
+                if (this.alquilada == 'si'){
+                    this.alquilada = 'no';
+                }else{
+                    alert('No está alquilada')
+                }
+            }
+
+            function último_alquiler(){
+                return this.último_usuario;
+            }
+
+            function película(Título,año,duración,precio_alquiler){
+                this.Título = Título;
+                this.año = año;
+                this.duración = duración;
+                this.precio_alquiler = precio_alquiler;
+                this.alquilada = 'no';
+                this,último_usuario = '';
+                this.alquilar = alquilar;
+                this.devolver = devolver;
+                this.último_alquiler = último_alquiler;
+
+            }
+
+            peli1 = new película('Matrix',1996,'143 min','5 Euros');
+
+        </script>
+        Usuario
+        <select name="usuario" id="usuario">
+            <option value="Pablo">Pablo</option>
+            <option value="Ana">Ana</option>
+            <option value="Juan">Juan</option>
+            <option value="Pedro">Pedro</option>
+        </select>
+
+        <br>
+        <br>
+
+        ¿Qué desea hacer con la película Matrix?
+        <br>
+        <input type="button" value="Alquilar" onclick="peli1.alquilar(document.getElementById('usuario').value)">
+        <input type="button" value="Devolver" onclick="peli1.devolver()">
+        <input type="button" value="Último alquiler" onclick="alert(peli1.último_alquiler())">
+
+    </body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio con jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #capa {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 200px;
+            font-size: 18px;
+            margin: 20px auto;
+            border: 2px solid blue;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="capa">Texto inicial</div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="btnOcultar">Ocultar capa</button>
+        <button id="btnMostrar">Mostrar capa</button>
+        <button id="btnFadeOut">Desvanecer capa</button>
+        <button id="btnFadeIn">Aparecer capa</button>
+        <button id="btnNegrita">Texto en negrita</button>
+        <button id="btnReducir">Reducir tamaño</button>
+        <button id="btnRestaurar">Restaurar tamaño</button>
+        <button id="btnNormal">Quitar negrita</button>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <input type="text" id="nuevoTexto" placeholder="Introduce nuevo texto">
+        <button id="btnActualizar">Actualizar texto</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Ocultar la capa
+            $('#btnOcultar').click(function() {
+                $('#capa').hide();
+            });
+
+            // Mostrar la capa
+            $('#btnMostrar').click(function() {
+                $('#capa').show();
+            });
+
+            // Desvanecer la capa
+            $('#btnFadeOut').click(function() {
+                $('#capa').fadeOut();
+            });
+
+            // Aparecer la capa con fade
+            $('#btnFadeIn').click(function() {
+                $('#capa').fadeIn();
+            });
+
+            // Poner texto en negrita
+            $('#btnNegrita').click(function() {
+                $('#capa').css('font-weight', 'bold');
+            });
+
+            // Reducir tamaño de la capa
+            $('#btnReducir').click(function() {
+                $('#capa').css({
+                    width: '150px',
+                    height: '100px',
+                    'line-height': '100px'
+                });
+            });
+
+            // Restaurar tamaño inicial
+            $('#btnRestaurar').click(function() {
+                $('#capa').css({
+                    width: '300px',
+                    height: '200px',
+                    'line-height': '200px'
+                });
+            });
+
+            // Quitar negrita del texto
+            $('#btnNormal').click(function() {
+                $('#capa').css('font-weight', 'normal');
+            });
+
+            // Actualizar el texto de la capa
+            $('#btnActualizar').click(function() {
+                const nuevoTexto = $('#nuevoTexto').val();
+                $('#capa').text(nuevoTexto);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function validar(formulario) {
+            //comprobamos la longitud de los nombres
+            if ((formulario.nombre.value.length == 0) || (formulario.apellidos.value.length == 0)) {
+                alert("Los campos nombre y apellidos son obligatorios");
+                return false;
+            }
+    
+            //logitud del DNI.
+            if (formulario.dni.value.length == 0) {
+                alert("El campo DNI es obligatorio");
+                return false;
+            }
+    
+            //isNaN comprueba si es un valor numerico
+            if ((formulario.edad.value <= 1) || (isNaN(formulario.edad.value))) {
+                alert("La edad debe ser mayor de 1 y numerico");
+                return false;
+            }
+    
+            /*
+                esta lista de caracteres lo que hace es comprobar que se le
+                introduce caracteres validos seguidos de un "@" con más texto para
+                terminar con un ".com" 
+                Por ejemplo:
+                "[a-z]" significa de la "a" a la "z" 
+                y { 2, 3 } la longitud de esta palabra final. 
+            */
+            listacar = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)* (.[a - z]{ 2, 3 }) $/
+            
+            if (!listacar.test(document.getElementById('email').value)) {
+                alert("Debe indicar un email valido");
+                return false;
+            }
+            
+            /* 
+                simple script para comprobar el formato fecha, si no no usa
+                el formato xx / xx / xxxx no la da por valida
+                formatofecha = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+            */
+            if (!formatofecha.test(document.getElementById('fecha').value)){
+                alert("fecha erronea: " + document.getElementById('fecha').value);
+                return false;
+            }
+    
+            //comprueba que los checkbox estan marcados
+            if ((!formulario.idioma1.checked) && (!formulario.idioma2.checked) && (!formulario.idioma3.checked)) {
+                alert("Al menos debe indicar un idioma");
+                return false;
+            }
+    
+            //Si hemos llegado a este punto del script es que el formulario es correcto
+            alert("Formulario correcto :)")
+            formulario.submit(); // y con este submit se envia al servidor
+    }
+    
+    /* 
+        Si se quiere rizar el rizo se puede usar un comprobador de
+        DNIs añadiendo un nuevo evento en el formulario
+    */
+        function validateDNI(control) {
+            if (control.value == ""){
+                return;
+            }
+            var dni = control.value;
+    
+            ////sacamos los datos, primero los numeros
+            var numero = dni.substr(0, dni.length - 1);
+    
+            //// luego la letra
+            var letr = dni.substr(dni.length - 1, 1);
+    
+            ////la pasamos a mayusculas
+            letr = letr.toUpperCase();
+    
+            ////sacamos el resto del numero
+            numero = numero % 23;
+    
+            ////alert(numero);
+    
+            ////comapramos el resto con la lista de letras y si coincide es correcto:
+            var letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+            letra = letra.substring(numero, numero + 1);
+    
+            ////alert(letra);
+            
+            if (letra != letr) {
+                alert("dni erroneo");
+                return false;
+            }
+        }
+    </script>
+    
+</head>
+<body>
+    <div id="contenedor">
+        <form id="formulario" name="formulario" method="post" action="">
+            <fieldset id="grupo_datos">
+                <legend id="legend_datos">Datos Personales </legend>
+                <fieldset id="datos">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" />
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" />
+                    <hr />
+                    <label for="dni">DNI:</label>
+                    <input type="text" id="dni" name="dni" maxlength="9" placeholder="00000000A"
+                        onChange="validateDNI(this)" />
+                    <label for="edad">Edad:</label>
+                    <input type="text" id="edad" name="edad" size="2" maxlength="2" />
+                    <hr />
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" />
+                    <label for="sexo"> Sexo:</label>
+                    <select id="sexo" name="sexo">
+                        <option value="x"></option>
+                        <option value="m">masculino</option>
+                        <option value="f">femenino</option>
+                    </select>
+                </fieldset>
+                <fieldset id="grupo_fechas">
+                    <legend id="legenda_fechas"> Fecha Nacimiento</legend>
+                    <div class="fecha">
+                        <label for="fecha">Fecha Nacimiento</label>
+                        <input id="fecha" type="text">
+                    </div>
+                </fieldset>
+                <fieldset id="idiomas">
+                    <legend id="idiomas">Idiomas</legend>
+                    <input type="checkbox" name="idioma1" id="idioma1" value="castellano" class="idiomas" /> Castellano
+                    <br />
+                    <input type="checkbox" name="idioma2" id="idioma2" value="frances" class="idiomas" /> Frances
+                    <br />
+                    <input type="checkbox" name="idioma3" id="idioma3" value="ingles" class="idiomas" /> Ingles
+                    <br />
+                </fieldset>
+            </fieldset>
+            <fieldset id="sugerencias">
+                <legend id="sugerencias">Sugerencias</legend>
+                <textarea id="sugerencias" name="sugerencias" id="sugerencias" rows="14" cols="50"></textarea>
+            </fieldset>
+            <div id="caja_enviar">
+                <input type="button" name="enviar" id="enviar" value="Enviar Datos"
+                    onclick="validar(this.form);return false" />
+                <input type="reset" name="reset" id="reset" value="resetear" />
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

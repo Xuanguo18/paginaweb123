@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <script type="text/javascript">
+        function seleccionarTodos (opcion){
+            for (i = 1; i<=4; i++){
+                if (opcion) {
+                document.getElementById('ch' + i).checked = true;
+                } else{
+                document.getElementById('ch' + i).checked = false;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="formulario" method="post" action="">
+
+        Nombre <input type="text" name="nombre" />
+        <br />
+        Apellidos <input type="text" name="apellidos" />
+        <br /><br />
+        Deseas información de :
+        <br />
+        Seleccionar todos <input type="checkbox" name="selector" id="selector" 
+        onclick="seleccionarTodos(this.checked)"/> 
+        <br />
+        Viajes <input type="checkbox" name="viajes" id="ch1"/>
+        <br />
+        Informática <input type="checkbox" name="informatica" id="ch2"/>
+        <br />
+        Libros <input type="checkbox" name="libros" id="ch3"/>
+        <br />
+        Ocio <input type="checkbox" name="ocio" id="ch4"/> 
+        <br />
+    </form> 
+
+</body>
+</html>

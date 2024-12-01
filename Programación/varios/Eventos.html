@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <script type="text/javascript">
+	        function marca(form){
+	            for (i=0;i<form.modelos.length;i++){
+	                form.modelos[i].checked = true;
+	            }
+	        }
+	        function desmarca(form){
+	            for (i=0;i<form.modelos.length;i++){
+	                form.modelos[i].checked = false;
+	            }
+	        }
+	    </script>
+	</head>
+	<body>
+            <form name="pruebas" method="post" action="">
+                Marcar todas las opciones ?<br>
+                <input type="radio" name="opciones" value="si" onClick="marca(this.form)"> SI
+                <input type="radio" name="opciones" value="no" checked onClick="desmarca(this.form)"> No
+                <br><br>
+                Seleccione los modelos de coche que prefiera:<br>
+                <input type="checkbox" name="modelos" value="ferrari">Ferrari<br>
+                <input type="checkbox" name="modelos" value="Seat">Seat<br>
+                <input type="checkbox" name="modelos" value="Porche">Porche<br>
+                <input type="checkbox" name="modelos" value="Audi">Audi<br>
+            </form>
+	</body>
+</html>

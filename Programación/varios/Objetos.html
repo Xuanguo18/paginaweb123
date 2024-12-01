@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <script type="text/javascript">
+
+            function sueldo_mensual(){
+                document.write('sueldo mensual : ' + this.precioHora * this.horas * 30)
+            }
+
+            function empleado(antigüedad, precioHora, horas){
+                this.antigüedad = antigüedad;
+                this.precioHora = precioHora;
+                this.horas = horas;
+                this.sueldo_mensual = sueldo_mensual;
+            }
+            empleado.prototype.nombre = null;
+
+            
+            
+        </script>
+
+    </head>
+
+    <body>
+
+        Creación de un objeto en JavaScript <br/>y muestra de sus propiedades: <br/><br/>
+
+        <script type="text/javascript">
+
+            empleado1 = new empleado('1980',23,6);
+//            empleado1.sueldo_mensual();
+
+            empleado1.nombre = "Pablo";
+
+            for (var i in empleado1){
+                document.write("empleado1." + i + "=" + empleado1[i] + "<br/>");
+            }
+
+            document.write("<br/>")
+
+            empleado2 = new empleado('2004',30,8);
+//            empleado2.sueldo_mensual();
+
+            empleado2.nombre = "María";
+
+            for (var i in empleado2){
+                document.write("empleado2." + i + "=" + empleado2[i] + "<br/>");
+            }
+
+
+        </script>
+
+    </body>
+
+</html>
