@@ -1,0 +1,184 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    top: 0%;
+    z-index: 2;
+}
+nav {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+}
+nav a {
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+nav a:hover {
+    background-color: #575757;
+}
+main {
+    margin-top: 25px;
+    padding: 2rem;
+    text-align: center;
+}
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+.logo {
+    position: absolute; /* Posiciona el logo de forma absoluta */
+    top: 0px; /* Distancia desde el borde superior */
+    left: 0px; /* Distancia desde el borde izquierdo */
+    width: 70px;
+    height: 70px;
+}
+#map {
+    height: 500px;
+    width: 100%;
+    z-index: 1;
+}
+.logoinsta{
+    position: static;
+    top: 40%;
+    left: 10%;
+    width: 15px;
+    height: auto;
+}
+.logoyoutube{
+    position: static;
+    top: 40%;
+    left: 13%;
+    width: 15px;
+    height: auto;
+}
+.centrado {
+    text-align: center;
+}
+.gallery-container {
+    margin: auto;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .gallery-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .gallery-images img {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .arrow.left {
+    left: 10px;
+  }
+
+.arrow.right {
+    right: 10px;
+}
+#table1 {
+    position: static;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    width: 600px;
+    align-content: center;
+    margin:auto;
+}
+.form1 {
+    max-width: 400px;
+}
+.form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+
+  .success {
+    color: green;
+    font-size: 1em;
+  
+  }
+
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #218838;
+  }
+  .activate {
+    background-color: lightgreen;
+  }
+  .main1 {
+    margin-top: 25px;
+    padding: 2rem;
+    text-align: left;
+  }

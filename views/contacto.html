@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - BitWorks</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="../js/main.js"></script>
+<style>
+        #map {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html">
+            <img src="../img/logo.png" alt="Logo" class="logo">
+        </a>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="galeria.html">Galería</a>
+            <a href="presupuesto.html">Presupuesto</a>
+            <a href="contacto.html" class="activate">Contacto</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Validación de Email</h1>
+        <form id="emailForm">
+            <label for="email">Ingresa tu correo electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com" required>
+            <button type="button" onclick="validateEmail()">Validar</button>
+            <p id="message" class="message"></p>
+        </form>
+        <h1>Mapa con OpenStreetMap</h1>
+        <div id="map"></div>
+        
+        <h1>Nos situamos en:</h1> 
+        <h3>5 Av. Ramón y Cajal, Valladolid, Castilla y León</h3>
+        <h1>O llámanos al:</h1>
+        <h3>
+            Telf: 879 917 872 <br>
+            Móvil: 987 312 876 <br>
+        </h3>
+        
+        <h2>¿Cómo llegar?</h2>
+        <p>Puedes ingresar tus coordenadas o usar tu ubicación actual para calcular la ruta:</p>
+        <form id="routeForm">
+            <label for="startLocation">Tu ubicación:</label>
+            <input type="text" id="startLocation" placeholder="Ejemplo: 40.416775, -3.703790">
+            <button type="button" onclick="calculateRoute()">Calcular Ruta</button>
+        </form>
+        <button type="button" onclick="useCurrentLocation()">Usar mi ubicación actual</button>
+    </main>
+    
+    <footer>
+        <p>© Copyright 2024 BitWorks · <a href="">Aviso legal</a> <br>
+        <a href="https://www.instagram.com">
+            <img src="../img/logoinsta.png" alt="logoinsta" class="logoinsta">
+        </a>
+        <a href="https://www.youtube.com">
+            <img src="../img/logoyoutube.png" alt="logoyoutube" class="logoyoutube">
+        </a>
+        </p>
+    </footer>
+
+    <script>
+        // Inicializar el mapa
+        const map = L.map('map').setView([41.654222, -4.717778], 12); // Coordenadas iniciales
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors',
+        }).addTo(map);
+
+        // Marcador de la ubicación principal
+        const destination = [41.654222, -4.717778];
+        L.marker(destination)
+            .addTo(map)
+            .bindPopup('Ubicación principal: 5 Av. Ramón y Cajal, Valladolid')
+            .openPopup();
+
+        // Función para calcular la ruta
+        function calculateRoute(startCoordinates) {
+            const input = document.getElementById('startLocation');
+            const coordinates = startCoordinates || input.value.split(',').map(coord => parseFloat(coord.trim()));
+
+            if (coordinates.length !== 2 || isNaN(coordinates[0]) || isNaN(coordinates[1])) {
+                alert('Por favor, introduce coordenadas válidas en formato: latitud, longitud');
+                return;
+            }
+
+            // Eliminar cualquier ruta previa en el mapa
+            if (window.routeControl) {
+                map.removeControl(window.routeControl);
+            }
+
+            // Crear una nueva ruta
+            window.routeControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(coordinates[0], coordinates[1]), // Ubicación inicial
+                    L.latLng(destination[0], destination[1])  // Destino
+                ],
+                routeWhileDragging: true,
+                language: 'es',
+                show: true
+            }).addTo(map);
+        }
+
+        // Función para usar la ubicación actual
+        function useCurrentLocation() {
+            if (!navigator.geolocation) {
+                alert('Tu navegador no soporta geolocalización.');
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    calculateRoute([latitude, longitude]);
+                },
+                (error) => {
+                    alert('No se pudo obtener tu ubicación. Por favor, habilita el acceso a tu ubicación.');
+                }
+            );
+        }
+    </script>
+</body>
+</html>
